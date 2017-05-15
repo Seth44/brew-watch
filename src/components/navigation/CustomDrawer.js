@@ -8,16 +8,20 @@ import Subheader from 'material-ui/Subheader';
 const menuItemStyle = {
   paddingLeft: '20px',
 }
+const linkStyle = {
+  height: '100%',
+  display: 'block'
+}
 
 export default class CustomDrawer extends React.Component {
   buildLoggedIn = () => {
     return (
       <div>
         <MenuItem onTouchTap={this.props.handleClose} style={menuItemStyle}>
-          <Link to='/'>Home</Link>
+          <Link to='/' style={linkStyle}>Home</Link>
         </MenuItem>
         <MenuItem onTouchTap={this.props.handleClose} style={menuItemStyle}>
-          <Link to='/find'>Find</Link>
+          <Link to='/find' style={linkStyle}>Find</Link>
         </MenuItem>
         <MenuItem onTouchTap={this.props.handleClose} style={menuItemStyle}>About</MenuItem> 
         <MenuItem onTouchTap={this.props.handleClose} style={menuItemStyle}>Contact</MenuItem>
@@ -28,13 +32,13 @@ export default class CustomDrawer extends React.Component {
     return (
       <div>
         <MenuItem onTouchTap={this.props.handleClose} style={menuItemStyle}>
-          <Link to='/'>Home</Link>
+          <Link to='/' style={linkStyle}>Home</Link>
         </MenuItem>
         <MenuItem onTouchTap={this.props.handleClose} style={menuItemStyle}>
-          <Link to='/login'>Login</Link>
+          <Link to='/login' style={linkStyle}>Login</Link>
         </MenuItem>
         <MenuItem onTouchTap={this.props.handleClose} style={menuItemStyle}>
-          <Link to='/signup'>Signup</Link>
+          <Link to='/signup' style={linkStyle}>Signup</Link>
         </MenuItem>
         <MenuItem onTouchTap={this.props.handleClose} style={menuItemStyle}>About</MenuItem> 
         <MenuItem onTouchTap={this.props.handleClose} style={menuItemStyle}>Contact</MenuItem>

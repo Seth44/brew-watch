@@ -36,13 +36,17 @@ class Signup extends Component {
     firebase.auth().createUserWithEmailAndPassword(self.state.email, self.state.password)
       .then(function(response) {
         const user = firebase.auth().currentUser;
-        user.updateProfile({
-          displayName: self.state.name,
-        }).then(function() {
-          // Update successful.
+
+        firebase.database().ref('users/' + user.uid).set({
+          username: self.state.name,
+          email: self.state.email,
+        })
+        .then(function() {
+        // Update successful.
         }, function(error) {
           // An error happened.
-        });       
+        });  
+     
         self.props.history.push('/');
       })
       .catch(function(error) {

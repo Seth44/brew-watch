@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { IconButton, FlatButton, RaisedButton, Avatar, AppBar, Popover, Menu, MenuItem } from 'material-ui';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import Person from 'material-ui/svg-icons/social/person';
@@ -7,6 +7,11 @@ import Person from 'material-ui/svg-icons/social/person';
 import * as firebase from 'firebase';
 
 import CustomDrawer from './CustomDrawer';
+
+const linkStyle = {
+  height: '100%',
+  display: 'block'
+}
 
 class Navigation extends Component {
   static propTypes = {
@@ -89,7 +94,9 @@ class Navigation extends Component {
           >
           <Menu>
             <MenuItem primaryText="Help &amp; feedback" />
-            <MenuItem primaryText="Settings" />
+            <MenuItem onTouchTap={this.handleRequestClose} >
+                <Link to='/settings' style={linkStyle}>Settings</Link>
+            </MenuItem>
             <MenuItem primaryText="Sign out" onTouchTap={this.signOut} />
           </Menu>
         </Popover>

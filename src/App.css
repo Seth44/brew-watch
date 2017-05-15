@@ -19,6 +19,21 @@ body {
   height: 100vh;
 }
 
+.link-style {
+  height: 100%;
+  display: block;
+}
+
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
 a, a:hover {
   text-decoration: none;
   color: black;

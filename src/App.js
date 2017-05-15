@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom'
 import { green400 } from 'material-ui/styles/colors';
+import { CircularProgress } from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Navigation from './components/navigation/Navigation';
+import Routes from './routes/routes';
 import './App.css';
+
+import * as firebase from 'firebase';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -15,16 +20,42 @@ const muiTheme = getMuiTheme({
 });
 
 class App extends Component {
+  state = {
+    authed: false,
+    loading: true,
+  }
+  componentDidMount () {
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({
+          authed: true,
+          loading: false,
+        })
+      } else {
+        this.setState({
+          authed: false,
+          loading: false
+        })
+      }
+    })
+  }
+  componentWillUnmount () {
+    this.removeListener()
+  }
+
   render() {
-    return (
-      <div>
+    return this.state.loading === true ? 
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <CircularProgress style={{marginTop: '45%'}} size={100} thickness={5} />
+      </MuiThemeProvider> : (
+      <Router>
         <MuiThemeProvider muiTheme={muiTheme}>
           <div className="App">
             <Navigation />
-            {this.props.children}
+            <Routes authed={this.state.authed} />
           </div>
         </MuiThemeProvider>
-      </div>
+      </Router>
     );
   }
 }

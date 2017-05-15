@@ -9,9 +9,8 @@ const firebase = require("firebase/app");
 require("firebase/auth");
 require("firebase/database");
 
+import App from './App';
 import './index.css';
-
-import Routes from './routes/routes';
 
 // Initialize Firebase
 const config = {
@@ -28,6 +27,6 @@ firebase.initializeApp(config);
 injectTapEventPlugin();
 
 ReactDOM.render(
-  <Routes />,
+  <App />,
   document.getElementById('root')
 );

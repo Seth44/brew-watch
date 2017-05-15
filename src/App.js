@@ -1,5 +1,8 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom'
+import React, { Component, PropTypes } from 'react';
+import { 
+  BrowserRouter as Router, 
+  withRouter 
+} from 'react-router-dom';
 import { green400 } from 'material-ui/styles/colors';
 import { CircularProgress } from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -23,7 +26,8 @@ class App extends Component {
   state = {
     authed: false,
     loading: true,
-  }
+  };
+
   componentDidMount () {
     this.removeListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
